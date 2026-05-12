@@ -7,6 +7,7 @@ import TimeSlotSelection from "./TimeSlotSelection";
 import PatientForm from "./PatientForm";
 import AppointmentSummary from "./AppointmentSummary";
 import { addAppointment } from "@/store/appointmentStore";
+import PatientNavbar from "./patientNavbar";
 
 export default function PatientBooking() {
   // Doctor
@@ -69,54 +70,58 @@ export default function PatientBooking() {
     setReason("");
   };
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <DoctorSelection
-        selectedDoctor={selectedDoctor}
-        setSelectedDoctor={setSelectedDoctor}
-      ></DoctorSelection>
+    <>
+      <PatientNavbar />
 
-      <TimeSlotSelection
-        selectedTime={selectedTime}
-        setSelectedTime={setSelectedTime}
-      ></TimeSlotSelection>
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <DoctorSelection
+          selectedDoctor={selectedDoctor}
+          setSelectedDoctor={setSelectedDoctor}
+        ></DoctorSelection>
 
-      <PatientForm
-        // First Name
-        firstName={firstName}
-        setFirstName={setFirstName}
-        // Last Name
-        lastName={lastName}
-        setLastName={setLastName}
-        // Email
-        email={email}
-        setEmail={setEmail}
-        // Phone
-        phone={phone}
-        setPhone={setPhone}
-        // Preferred Contact
-        preferredContact={preferredContact}
-        setPreferredContact={setPreferredContact}
-        // Reason
-        reason={reason}
-        setReason={setReason}
-      ></PatientForm>
+        <TimeSlotSelection
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+        ></TimeSlotSelection>
 
-      <AppointmentSummary
-        selectedDoctor={selectedDoctor}
-        selectedTime={selectedTime}
-      ></AppointmentSummary>
+        <PatientForm
+          // First Name
+          firstName={firstName}
+          setFirstName={setFirstName}
+          // Last Name
+          lastName={lastName}
+          setLastName={setLastName}
+          // Email
+          email={email}
+          setEmail={setEmail}
+          // Phone
+          phone={phone}
+          setPhone={setPhone}
+          // Preferred Contact
+          preferredContact={preferredContact}
+          setPreferredContact={setPreferredContact}
+          // Reason
+          reason={reason}
+          setReason={setReason}
+        ></PatientForm>
 
-      {isSubmitted && (
-        <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
-          Thank you for booking your appointment. A confirmation email will be
-          sent 7 days before your scheduled appointment.
-        </div>
-      )}
-      {error && (
-        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
-          {error}
-        </div>
-      )}
-    </form>
+        <AppointmentSummary
+          selectedDoctor={selectedDoctor}
+          selectedTime={selectedTime}
+        ></AppointmentSummary>
+
+        {isSubmitted && (
+          <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
+            Thank you for booking your appointment. A confirmation email will be
+            sent 7 days before your scheduled appointment.
+          </div>
+        )}
+        {error && (
+          <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
+      </form>
+    </>
   );
 }
