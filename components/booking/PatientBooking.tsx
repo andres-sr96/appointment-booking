@@ -19,11 +19,26 @@ export default function PatientBooking() {
   const [phone, setPhone] = useState("");
   const [preferredContact, setPreferredContact] = useState("");
   const [reason, setReason] = useState("");
-
   // Appointment Submitted
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !selectedDoctor ||
+      !selectedTime ||
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !preferredContact ||
+      !reason
+    ) {
+      alert("Please complete all required fields.");
+      return;
+    }
+
     console.log("Appointment submitted");
     console.log({
       selectedDoctor,
@@ -35,10 +50,12 @@ export default function PatientBooking() {
       preferredContact,
       reason,
     });
+
     setIsSubmitted(true);
-    // Reset Inputs
+
+    // Resetting Inputs
     setSelectedDoctor(null);
-    setSelectedTime("");
+    setSelectedTime(null);
 
     setFirstName("");
     setLastName("");
@@ -47,7 +64,6 @@ export default function PatientBooking() {
     setPreferredContact("");
     setReason("");
   };
-
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <DoctorSelection
@@ -84,7 +100,6 @@ export default function PatientBooking() {
       <AppointmentSummary
         selectedDoctor={selectedDoctor}
         selectedTime={selectedTime}
-        onSubmit={handleSubmit}
       ></AppointmentSummary>
 
       {isSubmitted && (

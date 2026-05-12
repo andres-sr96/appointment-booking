@@ -5,13 +5,11 @@ import { Doctor } from "@/models/doctor";
 type Props = {
   selectedDoctor: Doctor | null;
   selectedTime: string | null;
-  onSubmit: () => void;
 };
 
 export default function AppointmentSummary({
   selectedDoctor,
   selectedTime,
-  onSubmit,
 }: Props) {
   return (
     <div className="space-y-6 border rounded-xl p-6 bg-white">
@@ -47,7 +45,7 @@ export default function AppointmentSummary({
 
       {/* Submit */}
       <button
-        onClick={onSubmit}
+        type="submit"
         className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
       >
         Request Appointment
