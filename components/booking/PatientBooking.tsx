@@ -6,6 +6,7 @@ import DoctorSelection from "./DoctorSelection";
 import TimeSlotSelection from "./TimeSlotSelection";
 import PatientForm from "./PatientForm";
 import AppointmentSummary from "./AppointmentSummary";
+import { addAppointment } from "@/store/appointmentStore";
 
 export default function PatientBooking() {
   // Doctor
@@ -22,6 +23,9 @@ export default function PatientBooking() {
   // Appointment Submitted
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Error handling
+  const [error, setError] = useState<string | null>(null);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -35,20 +39,20 @@ export default function PatientBooking() {
       !preferredContact ||
       !reason
     ) {
-      alert("Please complete all required fields.");
+      setError("Please complete all required fields.");
       return;
     }
 
-    console.log("Appointment submitted");
-    console.log({
-      selectedDoctor,
-      selectedTime,
-      firstName,
-      lastName,
+    addAppointment({
+      id: crypto.randomUUID(),
+      doctorId: selectedDoctor!.id,
+      doctorName: selectedDoctor!.name,
+      patientName: `${firstName} ${lastName}`,
       email,
       phone,
-      preferredContact,
       reason,
+      time: selectedTime!,
+      status: "pending",
     });
 
     setIsSubmitted(true);
@@ -106,6 +110,11 @@ export default function PatientBooking() {
         <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
           Thank you for booking your appointment. A confirmation email will be
           sent 7 days before your scheduled appointment.
+        </div>
+      )}
+      {error && (
+        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+          {error}
         </div>
       )}
     </form>
