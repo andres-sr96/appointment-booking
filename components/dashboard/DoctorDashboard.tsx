@@ -14,8 +14,7 @@ import { useState, useEffect } from "react";
 
 export default function DoctorDashboard() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [selectedDoctorId, setSelectedDoctorId] =
-    useState<string>("1");
+  const [selectedDoctorId, setSelectedDoctorId] = useState<string>("1");
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -25,7 +24,7 @@ export default function DoctorDashboard() {
   }, []);
 
   const filteredAppointments = appointments.filter(
-    (a) => a.doctorId === selectedDoctorId
+    (a) => a.doctorId === selectedDoctorId,
   );
 
   const refreshAppointments = () => {
@@ -51,12 +50,10 @@ export default function DoctorDashboard() {
         onSelectedDoctor={setSelectedDoctorId}
       />
 
-      <main className="w-full py-10 bg-[#F7F8FA] min-h-screen">
+      <main className="w-full py-10 bg-[#F7F8FA] min-h-screen font-[Inter]">
         <div className="mx-auto px-6">
-
           {/* GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-
             {/* LEFT COLUMN — 4/12 */}
             <div className="lg:col-span-4">
               <div className="sticky top-24 bg-white p-6">
@@ -69,21 +66,23 @@ export default function DoctorDashboard() {
 
             {/* RIGHT COLUMN — 8/12 */}
             <div className="lg:col-span-8 px-6">
-
               {/* Header */}
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold text-[#191B24]">
+                <h2 className="font-serif text-2xl font-semibold text-[#191B24]">
                   Upcoming Appointments
                 </h2>
 
-                <p className="text-sm text-[#434655] mt-2">
+                <p className="text-sm text-[#434655] mt-2 font-[Inter]">
                   Manage and review scheduled patient appointments.
                 </p>
               </div>
-
+              <hr
+                className="border-t border-[#434655]/30"
+                style={{ margin: "1.5rem 0" }}
+              />
               {/* Appointments */}
               {filteredAppointments.length === 0 ? (
-                <div className="bg-white p-6 text-[#434655]">
+                <div className="bg-white p-6 text-[#434655] font-[Inter]">
                   No appointments scheduled.
                 </div>
               ) : (
@@ -99,7 +98,6 @@ export default function DoctorDashboard() {
                 </div>
               )}
             </div>
-
           </div>
         </div>
       </main>

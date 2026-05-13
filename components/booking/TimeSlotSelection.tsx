@@ -16,11 +16,14 @@ export default function TimeSlotSelection({
 
       {/* Title */}
       <div className="space-y-3">
-        <h2 className="text-xl font-semibold text-[#191B24]">
+        <h2 className="font-serif text-2xl font-semibold text-[#191B24]">
           Select Preferred Time
         </h2>
 
-        <hr className="border-t border-[#434655]/30" style={{ margin: "1.5rem 0" }}/>
+        <hr
+          className="border-t border-[#434655]/30"
+          style={{ margin: "1.5rem 0" }}
+        />
       </div>
 
       {/* Slots */}
@@ -37,13 +40,14 @@ export default function TimeSlotSelection({
                 px-4 py-2 rounded-full border
                 transition-colors duration-150
                 text-sm font-medium cursor-pointer
-
+                font-sans
                 ${
                   isSelected
                     ? "border-[#0040CD] bg-[#0040CD] text-white"
                     : "border-[#434655] text-[#434655] hover:border-[#0040CD]"
                 }
               `}
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
               {slot}
             </button>

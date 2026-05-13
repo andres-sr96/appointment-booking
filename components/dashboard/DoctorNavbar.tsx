@@ -15,34 +15,35 @@ export default function DoctorNavbar({
   const doctor = doctors.find((d) => d.id === selectedDoctorId);
 
   return (
-    <nav className="w-full bg-white shadow-sm sticky top-0 z-50 border-b border-[#434655]/10">
-      <div className="w-full px-6 py-4 flex items-center justify-between">
+    <nav className="w-full bg-white border-b border-[#434655]/10 sticky top-0 z-50">
+      <div className="w-full px-6 py-4 flex items-center justify-between font-[Inter]">
+
         {/* Logo */}
-        <div
-          className="text-2xl font-bold tracking-tight text-[#434655]"
-          style={{ fontFamily: "var(--font-playfair-display)" }}
-        >
+        <div className="text-xl font-semibold text-[#0040CD]">
           SANNA
         </div>
 
         {/* Right side */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-10">
+
           {/* Doctor Dropdown */}
           <div className="relative group">
+
             {/* Selected doctor */}
-            <div className="flex items-center gap-3 cursor-pointer bg-white hover:bg-[#F7F8FA] px-3 transition border border-[#434655]/10">
+            <div className="flex items-center gap-3 cursor-pointer transition-colors duration-200 hover:text-[#0040CD]">
+
               <Image
                 src={doctor?.profileImage || "/default-doctor.png"}
                 alt="Doctor"
-                width={44}
-                height={44}
-                className="rounded-full object-cover border border-[#434655]/20"
+                width={20}
+                height={20}
+                className="w-10 h-10 rounded-full object-cover border border-[#434655]/20 transition-transform duration-200 group-hover:scale-105"
               />
 
               {/* Arrow */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4 text-[#434655] group-hover:text-[#0040CD] transition"
+                className="w-4 h-4 text-[#434655] group-hover:text-[#0040CD] transition-colors duration-200"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -56,20 +57,18 @@ export default function DoctorNavbar({
               </svg>
             </div>
 
-            {/* Dropdown menu */}
+            {/* Dropdown */}
             <div
               className="
-                absolute right-0 mt-4 w-72
+                absolute right-0 mt-3 w-72
                 bg-white rounded-2xl
                 border border-[#434655]/10
-                shadow-[0_10px_40px_rgba(0,0,0,0.08)]
-                opacity-0 invisible
-                translate-y-2
-                group-hover:opacity-100
-                group-hover:visible
-                group-hover:translate-y-0
+                shadow-lg
+                opacity-0 invisible translate-y-2
+                group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
                 transition-all duration-200
                 overflow-hidden
+                font-[Inter]
               "
             >
               {/* Header */}
@@ -88,7 +87,7 @@ export default function DoctorNavbar({
                     onClick={() => onSelectedDoctor(d.id)}
                     className={`
                       w-full px-4 py-3 flex items-center gap-3 text-left
-                      transition cursor-pointer
+                      transition-colors duration-150 cursor-pointer
                       hover:bg-[#F7F8FA]
                       ${selectedDoctorId === d.id ? "bg-[#0040CD]/5" : ""}
                     `}
@@ -96,8 +95,8 @@ export default function DoctorNavbar({
                     <Image
                       src={d.profileImage}
                       alt={d.name}
-                      width={42}
-                      height={42}
+                      width={36}
+                      height={36}
                       className={`
                         rounded-full object-cover border
                         ${
@@ -122,12 +121,11 @@ export default function DoctorNavbar({
                         {d.name}
                       </p>
 
-                      <p className="text-xs text-[#434655] mt-1">
+                      <p className="text-xs text-[#434655]">
                         {d.specialty}
                       </p>
                     </div>
 
-                    {/* Selected indicator */}
                     {selectedDoctorId === d.id && (
                       <div className="w-2 h-2 rounded-full bg-[#0040CD]" />
                     )}
@@ -136,6 +134,7 @@ export default function DoctorNavbar({
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </nav>

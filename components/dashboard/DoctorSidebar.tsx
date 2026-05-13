@@ -37,7 +37,7 @@ export default function DoctorSidebar({
           />
 
           <div>
-            <p className="text-l font-semibold text-[#0040CD]">
+            <p className="font-serif text-lg font-bold text-[#0040CD]">
               {doctor?.name}
             </p>
 
@@ -47,8 +47,9 @@ export default function DoctorSidebar({
           </div>
         </div>
       </div>
+
       {/* Navigation */}
-      <div className="flex flex-col gap-3" style={{margin: "1rem 0"}}>
+      <div className="flex flex-col gap-3" style={{ margin: "1rem 0" }}>
 
         {tabs.map((tab) => (
           <button
@@ -57,12 +58,11 @@ export default function DoctorSidebar({
             onClick={() => setActiveTab(tab.id)}
             className={`
               w-full text-left px-4 py-3 rounded-xl
-              transition-all duration-200
-              cursor-pointer border
+              transition-all duration-200 cursor-pointer border font-medium
 
               ${
                 activeTab === tab.id
-                  ? "bg-[#0040CD] text-white border-[#0040CD] font-medium"
+                  ? "bg-[#0040CD] text-white border-[#0040CD]"
                   : "bg-white text-[#434655] border-[#434655]/10 hover:border-[#0040CD] hover:text-[#0040CD]"
               }
             `}
