@@ -68,7 +68,7 @@ export default function DoctorDashboard() {
             </div>
 
             {/* RIGHT COLUMN — 8/12 */}
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 px-6">
 
               {/* Header */}
               <div className="mb-8">
