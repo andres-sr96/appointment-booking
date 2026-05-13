@@ -54,7 +54,6 @@ export default function PatientNavbar() {
           <Link href="#" className={navItemClass("animate-fade-in-delay-300")}>
             <span className="relative group">
               My Visits
-              {/* Hover underline */}
               <span className="absolute left-0 -bottom-1 h-0.5 w-0 bg-[#0040CD] transition-all duration-300 group-hover:w-full" />
             </span>
           </Link>
