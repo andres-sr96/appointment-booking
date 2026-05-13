@@ -13,63 +13,63 @@ export default function DoctorSidebar({
   onSelectedDoctor,
 }: Props) {
   const [activeTab, setActiveTab] = useState("appointments");
-  const doctor = doctors.find((d) => d.id == selectedDoctorId);
+
+  const doctor = doctors.find((d) => d.id === selectedDoctorId);
+
+  const tabs = [
+    { id: "dashboard", label: "Dashboard" },
+    { id: "appointments", label: "Appointments" },
+    { id: "patients", label: "Patients" },
+    { id: "settings", label: "Settings" },
+  ];
 
   return (
-    <div className="h-screen border p-4 flex flex-col gap-6">
-      {/* Doctor profile */}
-      <div className="flex flex-col items-center text-center gap-2">
-        <img
-          src={doctor?.profileImage}
-          alt="Doctor"
-          className="w-20 h-20 rounded-full object-cover"
-        />
+    <div className="w-full px-6 space-y-12">
 
-        <div>
-          <p className="font-semibold">{doctor?.name}</p>
-          <p className="text-sm text-gray-500">{doctor?.specialty}</p>
+      {/* Doctor Profile */}
+      <div className="mb-10">
+        <div className="flex items-center gap-4">
+
+          <img
+            src={doctor?.profileImage}
+            alt="Doctor"
+            className="w-20 h-20 rounded-full object-cover border border-[#434655]/20"
+          />
+
+          <div>
+            <p className="text-l font-semibold text-[#0040CD]">
+              {doctor?.name}
+            </p>
+
+            <p className="text-sm text-[#434655] mt-1">
+              {doctor?.specialty}
+            </p>
+          </div>
         </div>
       </div>
-
       {/* Navigation */}
-      <div className="flex flex-col gap-2 mt-4">
-        <button
-          onClick={() => setActiveTab("dashboard")}
-          className={`text-left px-3 py-2 rounded ${
-            activeTab === "dashboard" ? "bg-gray-200" : "hover:bg-gray-100"
-          }`}
-        >
-          Dashboard
-        </button>
+      <div className="flex flex-col gap-3" style={{margin: "1rem 0"}}>
 
-        <button
-          onClick={() => setActiveTab("appointments")}
-          className={`text-left px-3 py-2 rounded ${
-            activeTab === "appointments"
-              ? "bg-gray-200 font-medium"
-              : "hover:bg-gray-100"
-          }`}
-        >
-          Appointments
-        </button>
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => setActiveTab(tab.id)}
+            className={`
+              w-full text-left px-4 py-3 rounded-xl
+              transition-all duration-200
+              cursor-pointer border
 
-        <button
-          onClick={() => setActiveTab("patients")}
-          className={`text-left px-3 py-2 rounded ${
-            activeTab === "patients" ? "bg-gray-200" : "hover:bg-gray-100"
-          }`}
-        >
-          Patients
-        </button>
-
-        <button
-          onClick={() => setActiveTab("settings")}
-          className={`text-left px-3 py-2 rounded ${
-            activeTab === "settings" ? "bg-gray-200" : "hover:bg-gray-100"
-          }`}
-        >
-          Settings
-        </button>
+              ${
+                activeTab === tab.id
+                  ? "bg-[#0040CD] text-white border-[#0040CD] font-medium"
+                  : "bg-white text-[#434655] border-[#434655]/10 hover:border-[#0040CD] hover:text-[#0040CD]"
+              }
+            `}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
     </div>
   );

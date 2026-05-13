@@ -4,24 +4,29 @@ import {
   getAppointments,
   updateAppointmentStatus,
 } from "@/store/appointmentStore";
+
 import AppointmentCard from "./AppointmentCard";
 import { Appointment } from "@/models/appointment";
 import DoctorSidebar from "./DoctorSidebar";
 import DoctorNavbar from "./DoctorNavbar";
+
 import { useState, useEffect } from "react";
 
 export default function DoctorDashboard() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
-  const [selectedDoctorId, setSelectedDoctorId] = useState<string>("1");
-  const filteredAppointments = appointments.filter(
-    (a) => a.doctorId === selectedDoctorId,
-  );
+  const [selectedDoctorId, setSelectedDoctorId] =
+    useState<string>("1");
+
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
     setAppointments(getAppointments());
   }, []);
+
+  const filteredAppointments = appointments.filter(
+    (a) => a.doctorId === selectedDoctorId
+  );
 
   const refreshAppointments = () => {
     setAppointments(getAppointments());
@@ -40,39 +45,64 @@ export default function DoctorDashboard() {
   if (!isMounted) return null;
 
   return (
-    <div className="flex flex-col h-screen">
+    <>
       <DoctorNavbar
         selectedDoctorId={selectedDoctorId}
         onSelectedDoctor={setSelectedDoctorId}
       />
 
-      <div className="grid grid-cols-6 gap-6 p-6 flex-1">
-        <div className="col-span-2">
-          <DoctorSidebar
-            selectedDoctorId={selectedDoctorId}
-            onSelectedDoctor={setSelectedDoctorId}
-          />
-        </div>
+      <main className="w-full py-10 bg-[#F7F8FA] min-h-screen">
+        <div className="mx-auto px-6">
 
-        <div className="col-span-4 space-y-4">
-          <h2 className="text-2xl font-semibold">Upcoming Appointments</h2>
+          {/* GRID */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-          {filteredAppointments.length === 0 ? (
-            <p className="text-gray-500">No appointments scheduled.</p>
-          ) : (
-            <div className="space-y-3">
-              {filteredAppointments.map((appointment) => (
-                <AppointmentCard
-                  key={appointment.id}
-                  appointment={appointment}
-                  onConfirm={handleConfirm}
-                  onCancel={handleCancel}
+            {/* LEFT COLUMN — 4/12 */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-24 bg-white p-6">
+                <DoctorSidebar
+                  selectedDoctorId={selectedDoctorId}
+                  onSelectedDoctor={setSelectedDoctorId}
                 />
-              ))}
+              </div>
             </div>
-          )}
+
+            {/* RIGHT COLUMN — 8/12 */}
+            <div className="lg:col-span-8">
+
+              {/* Header */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-semibold text-[#191B24]">
+                  Upcoming Appointments
+                </h2>
+
+                <p className="text-sm text-[#434655] mt-2">
+                  Manage and review scheduled patient appointments.
+                </p>
+              </div>
+
+              {/* Appointments */}
+              {filteredAppointments.length === 0 ? (
+                <div className="bg-white p-6 text-[#434655]">
+                  No appointments scheduled.
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {filteredAppointments.map((appointment) => (
+                    <AppointmentCard
+                      key={appointment.id}
+                      appointment={appointment}
+                      onConfirm={handleConfirm}
+                      onCancel={handleCancel}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+          </div>
         </div>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
