@@ -12,32 +12,44 @@ export default function TimeSlotSelection({
   setSelectedTime,
 }: Props) {
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Select Preferred Time</h2>
-      <div className="flex flex-wrap gap-3">
-        {timeSlots.map((slot) => (
-          <button
-            key={slot}
-            onClick={() => setSelectedTime(slot)}
-            className={`px-4 py-2 rounded-full border transition ${
-              selectedTime === slot
-                ? "border-blue-600 bg-blue-50"
-                : "border-gray-200"
-            }`}
-          >
-            {slot}
-          </button>
-        ))}
+    <div className="w-full px-6 py-6 space-y-12">
+
+      {/* Title */}
+      <div className="space-y-3">
+        <h2 className="text-xl font-semibold text-[#191B24]">
+          Select Preferred Time
+        </h2>
+
+        <hr className="border-t border-[#434655]/30" style={{ margin: "1.5rem 0" }}/>
       </div>
 
-      {/* 
-      Testing selected time
-      
-      {selectedTime && (
-        <div className="text-sm text-gray-700">
-          Selected Time: <strong>{selectedTime}</strong>
-        </div>
-      )} */}
+      {/* Slots */}
+      <div className="flex flex-wrap gap-3">
+        {timeSlots.map((slot) => {
+          const isSelected = selectedTime === slot;
+
+          return (
+            <button
+              key={slot}
+              type="button"
+              onClick={() => setSelectedTime(slot)}
+              className={`
+                px-4 py-2 rounded-full border
+                transition-colors duration-150
+                text-sm font-medium
+
+                ${
+                  isSelected
+                    ? "border-[#0040CD] bg-[#0040CD] text-white"
+                    : "border-[#434655] text-[#434655] hover:border-[#0040CD]"
+                }
+              `}
+            >
+              {slot}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
