@@ -10,13 +10,9 @@ import { addAppointment } from "@/store/appointmentStore";
 import PatientNavbar from "./patientNavbar";
 
 export default function PatientBooking() {
-  // Doctor
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
-
-  // Time
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  // Form
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,13 +20,11 @@ export default function PatientBooking() {
   const [preferredContact, setPreferredContact] = useState("");
   const [reason, setReason] = useState("");
 
-  // UI states
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     setError(null);
 
     if (
@@ -61,14 +55,10 @@ export default function PatientBooking() {
 
     setIsSubmitted(true);
 
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 4000);
+    setTimeout(() => setIsSubmitted(false), 4000);
 
-    // Reset form
     setSelectedDoctor(null);
     setSelectedTime(null);
-
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -78,68 +68,71 @@ export default function PatientBooking() {
   };
 
   return (
-  <>
-    <PatientNavbar />
+    <>
+      <PatientNavbar />
 
-    <form onSubmit={handleSubmit} className="w-full py-10 bg-[#F7F8FA]">
-      <div className="max-w-[1400px] mx-auto px-6">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <form onSubmit={handleSubmit} className="w-full py-10 bg-[#F7F8FA]">
+        <div className="max-w-[1400px] mx-auto px-6">
           
-          {/* LEFT COLUMN (8/12) */}
-          <div className="lg:col-span-8 space-y-10">
-            <DoctorSelection
-              selectedDoctor={selectedDoctor}
-              setSelectedDoctor={setSelectedDoctor}
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
-            <TimeSlotSelection
-              selectedTime={selectedTime}
-              setSelectedTime={setSelectedTime}
-            />
-
-            <PatientForm
-              firstName={firstName}
-              setFirstName={setFirstName}
-              lastName={lastName}
-              setLastName={setLastName}
-              email={email}
-              setEmail={setEmail}
-              phone={phone}
-              setPhone={setPhone}
-              preferredContact={preferredContact}
-              setPreferredContact={setPreferredContact}
-              reason={reason}
-              setReason={setReason}
-            />
-          </div>
-
-          {/* RIGHT COLUMN (4/12) */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-24 space-y-6">
-              <AppointmentSummary
+            {/* LEFT COLUMN */}
+            <div className="lg:col-span-8 space-y-10">
+              <DoctorSelection
                 selectedDoctor={selectedDoctor}
-                selectedTime={selectedTime}
+                setSelectedDoctor={setSelectedDoctor}
               />
 
-              {isSubmitted && (
-                <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
-                  Thank you for booking your appointment. A confirmation email
-                  will be sent 7 days before your scheduled appointment.
-                </div>
-              )}
+              <TimeSlotSelection
+                selectedTime={selectedTime}
+                setSelectedTime={setSelectedTime}
+              />
 
-              {error && (
-                <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
-                  {error}
-                </div>
-              )}
+              <PatientForm
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                email={email}
+                setEmail={setEmail}
+                phone={phone}
+                setPhone={setPhone}
+                preferredContact={preferredContact}
+                setPreferredContact={setPreferredContact}
+                reason={reason}
+                setReason={setReason}
+              />
             </div>
-          </div>
 
+            {/* RIGHT COLUMN */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-24 bg-white p-6">
+
+                <AppointmentSummary
+                  selectedDoctor={selectedDoctor}
+                  selectedTime={selectedTime}
+                />
+
+                <div className="mt-6">
+                  {isSubmitted && (
+                    <div className="p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
+                      Thank you for booking your appointment. A confirmation email will be sent 7 days before your scheduled appointment.
+                    </div>
+                  )}
+
+                  {error && (
+                    <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+                      {error}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </form>
-  </>
-);
+      </form>
+    </>
+  );
 }
