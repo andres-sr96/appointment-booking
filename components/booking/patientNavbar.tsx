@@ -19,7 +19,7 @@ export default function PatientNavbar() {
   `;
 
   return (
-    <nav className="w-full border-b bg-white shadow-sm sticky top-0 z-50">
+    <nav className="w-full bg-white shadow-sm sticky top-0 z-50">
       <div className="w-full px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <div
@@ -61,7 +61,7 @@ export default function PatientNavbar() {
           {/* Notifications */}
           <button
             className={`
-              relative flex items-center justify-center
+              relative flex items-center justify-center cursor-pointer
               ${!isMounted ? "opacity-0 translate-y-2" : ""}
               ${isMounted ? "animate-fade-in-delay-400" : ""}
             `}

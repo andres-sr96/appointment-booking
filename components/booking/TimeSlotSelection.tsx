@@ -36,7 +36,7 @@ export default function TimeSlotSelection({
               className={`
                 px-4 py-2 rounded-full border
                 transition-colors duration-150
-                text-sm font-medium
+                text-sm font-medium cursor-pointer
 
                 ${
                   isSelected

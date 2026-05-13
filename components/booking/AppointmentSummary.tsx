@@ -60,7 +60,7 @@ export default function AppointmentSummary({
 
         <button
           type="submit"
-          className="w-full bg-[#0040CD] text-white py-3 rounded-xl font-medium hover:bg-[#0033A0] transition"
+          className="w-full bg-[#0040CD] text-white py-3 rounded-xl font-medium hover:bg-[#0033A0] transition cursor-pointer"
         >
           Request Appointment
         </button>

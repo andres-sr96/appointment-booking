@@ -72,7 +72,7 @@ export default function PatientBooking() {
       <PatientNavbar />
 
       <form onSubmit={handleSubmit} className="w-full py-10 bg-[#F7F8FA]">
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="mx-auto px-6">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
 
