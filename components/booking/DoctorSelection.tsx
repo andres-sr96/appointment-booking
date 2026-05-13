@@ -31,7 +31,7 @@ export default function DoctorSelection({
           Select a Doctor
         </h3>
 
-        <div className="grid gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {doctors.map((doctor) => (
             <DoctorCard
               key={doctor.id}

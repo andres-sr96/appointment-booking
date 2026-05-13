@@ -10,13 +10,28 @@ export default function DoctorCard({ doctor, isSelected, onSelect }: Props) {
   return (
     <div
       onClick={() => onSelect(doctor)}
-      className={`p-4 border rounded-lg cursor-pointer transition ${
-        isSelected ? "border-blue-600" : "border-gray-200"
-      }`}
+      className={`flex gap-4 p-4 rounded-xl cursor-pointer border-2 transition-colors duration-150
+        ${isSelected ? "border-[#0040CD] border-3" : "border-[#C4C5D8] hover:border-[#0040CD]"}`}
     >
-      <h3 className="font-semibold">{doctor.name}</h3>
-      <p className="text-sm text-gray-500">{doctor.specialty}</p>
-      <p className="text-xs mt-2 text-gray-600">{doctor.bio}</p>
+      {/* Image */}
+      <div className="flex-shrink-0">
+        <img
+          src={doctor.profileImage}
+          alt={doctor.name}
+          className="w-14 h-14 rounded-lg object-cover"
+        />
+      </div>
+
+      {/* Info */}
+      <div className="flex flex-col">
+        <h3 className="font-semibold text-[#0040CD]">{doctor.name}</h3>
+
+        <p className="text-sm text-[#434655]">{doctor.specialty}</p>
+
+        <p className="text-xs mt-1 text-[#434655] leading-relaxed">
+          {doctor.bio}
+        </p>
+      </div>
     </div>
   );
 }
