@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Patient Booking System
 
-## Getting Started
+## How to Run the Project
 
-First, run the development server:
+1. Install dependencies:
+   npm install
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Run the development server:
+   npm run dev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open the app:
+   http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What I Built
 
-## Learn More
+Patient appointment booking system (localhost:3000) where users can:
 
-To learn more about Next.js, take a look at the following resources:
+- Select a physician
+- Choose an available time slot
+- Fill out a patient details form (name, email, phone, reason for visit)
+- Submit an appointment request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The system also includes a doctor-facing dashboard (localhost:3000/admin) where doctors can:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- View upcoming appointments
+- Filter appointments by doctor
+- See appointment details
+- Update appointment status (pending, confirmed, cancelled)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Key Technical / Product Decisions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Used localStorage to persist appointments and simulate a basic database without adding backend.
+- Broke the UI into small, reusable components to keep the booking flow easy to follow and maintain.
+- Added filtering on the doctor dashboard so each doctor only sees their own appointments.
+- Focused on keeping the booking flow straightforward and easy to use.
+
+---
+
+## What I Would Improve With More Time
+
+- Add a backend for data storage
+- Add authentication for doctors and patients
+- Improve scheduling with real calendar availability
+- Prevent booking unavailable time slots
+- Add email notifications for appointment confirmation
+- Improve UI responsiveness and accessibility
+- Add state management and real-time updates
