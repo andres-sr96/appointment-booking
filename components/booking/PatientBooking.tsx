@@ -78,12 +78,16 @@ export default function PatientBooking() {
   };
 
   return (
-    <>
-      <PatientNavbar />
+  <>
+    <PatientNavbar />
 
-      <form onSubmit={handleSubmit} className="w-full px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-8 w-full space-y-10">
+    <form onSubmit={handleSubmit} className="w-full py-10 bg-[#F7F8FA]">
+      <div className="max-w-[1400px] mx-auto px-6">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* LEFT COLUMN (8/12) */}
+          <div className="lg:col-span-8 space-y-10">
             <DoctorSelection
               selectedDoctor={selectedDoctor}
               setSelectedDoctor={setSelectedDoctor}
@@ -110,6 +114,7 @@ export default function PatientBooking() {
             />
           </div>
 
+          {/* RIGHT COLUMN (4/12) */}
           <div className="lg:col-span-4">
             <div className="sticky top-24 space-y-6">
               <AppointmentSummary
@@ -131,8 +136,10 @@ export default function PatientBooking() {
               )}
             </div>
           </div>
+
         </div>
-      </form>
-    </>
-  );
+      </div>
+    </form>
+  </>
+);
 }
